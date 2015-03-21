@@ -1,0 +1,18 @@
+%h1="Listing #{@tweets.count} Tweets"
+%h3="Average word count: #{@avg_word_count.round(1)}"
+%h3="Average hashtag count: #{@avg_hashtag_count.round(1)}"
+%h3="Average spelling score: #{@avg_spell_score.round(1)}"
+%table#tweet_table
+  %tr
+    %th.user User
+    %th.text Text
+    %th.hashtags Hashtags
+    %th.spelling Spelling Score
+    %th.timestamp Timestamp
+  - @tweets.reverse_each do |tweet|
+    %tr
+      %td.user= tweet.user
+      %td.text= tweet.text
+      %td.hashtags= tweet.hashtags
+      %td.spelling= tweet.spell_score
+      %td.timestamps= l Time.at(tweet.tweet_time), format: :short
